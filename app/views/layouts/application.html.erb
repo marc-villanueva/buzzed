@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title><%= @title || "Buzzed" %></title>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body ng-app="Buzzed">
+  <div id="wrap">
+    <header ng-controller="HeaderCtrl as vm">
+      <%= render 'layouts/navigation' %>
+    </header>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+  </div>
+
+  <%= render 'layouts/footer' %>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3crC_bzuNOzaU-THBEy4E7J1TF1VkZPk&libraries=places"></script>
+</body>
+</html>

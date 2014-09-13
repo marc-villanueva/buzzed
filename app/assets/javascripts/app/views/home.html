@@ -1,0 +1,23 @@
+<div>
+  <button class="btn btn-primary btn-block btn-large" ng-click="vm.goTo('/fizz')" type="button">FIZZ</button>
+  <button class="btn btn-primary btn-block" ng-click="vm.goTo('/buzz')" type="button">BUZZ</button>
+</div>
+
+<div>
+  <table class="table table-hover">
+    <tbody>
+      <tr ng-repeat="item in vm.fizzes" class="hover" style="cursor: pointer;">
+        <td style="width:64px;">
+          <img ng-src="{{item.beer.icon}}" ng-show="item.beer.icon" />
+        </td>
+        <td>
+          {{item.beer.name}} @ {{item.place.name}}<br/>
+          <span class="text-muted">{{item.place.vicinity}}</span>
+        </td>
+        <td valign="middle">
+          <span class="text-muted"><small>{{ item.createdAt | date : 'short' }}</small></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

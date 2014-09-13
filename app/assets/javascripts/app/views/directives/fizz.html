@@ -1,0 +1,38 @@
+<div>
+  <div class="panel panel-default" ng-show="vm.mainToggle">
+    <div class="panel-heading clearfix">
+      <h4 class="pull-left">FIZZ</h4>
+    </div>
+    <div class="panel-body">
+      <p>
+        I just got a <a href="javascript:void(0);" ng-click="vm.showBeerSearchForm()">{{vm.selectedBeer()}}</a> at <a href="javascript:void(0);" ng-click="vm.showNearbyPlacesForm()">{{vm.selectedPlace()}}</a>.
+      </p>
+
+      <p>
+        <button type="button" class="btn btn-primary" ng-show="vm.showSubmitButton()" ng-click="vm.submit()">Submit</button>
+      </p>
+    </div>
+  </div>
+
+  <beer-search ng-show="vm.beerSearchToggle" beer-selection="vm.beerSelection" on-cancel="vm.closeBeerSearchForm()" header-text="What are you drinking?"></beer-search>
+  <place-select user-location="vm.user.location" ng-show="vm.nearbyPlacesToggle" place-selection="vm.placeSelection" on-cancel="vm.closeNearbyPlacesForm()"></place-select>
+
+  <table class="table table-hover">
+    <tbody>
+      <tr ng-repeat="item in vm.user.fizzes" class="hover" style="cursor: pointer;">
+        <td style="width:64px;">
+          <img ng-src="{{item.beer.icon}}" ng-show="item.beer.icon" />
+        </td>
+        <td>
+          {{item.beer.name}} @ {{item.place.name}}<br/>
+          <span class="text-muted">{{item.place.vicinity}}</span>
+        </td>
+        <td valign="middle">
+          <button type="button" class="close pull-right" ng-click="vm.removeFizz($index)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

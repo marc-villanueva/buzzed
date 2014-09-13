@@ -1,0 +1,37 @@
+<div>
+  <div class="panel panel-default" ng-show="vm.mainToggle">
+    <div class="panel-heading">
+      <h4>BUZZ</h4>
+    </div>
+    <div class="panel-body">
+      <p>
+        Buzz me when someone gets a <a href="javascript:void(0);" ng-click="vm.showBeerSearchForm()">{{vm.selectedBeer()}}</a>.
+      </p>
+
+      <p>
+        <button type="button" class="btn btn-primary" ng-show="vm.showSubmitButton()" ng-click="vm.submit()">Submit</button>
+      </p>
+    </div>
+  </div>
+
+  <beer-search ng-show="vm.beerSearchToggle" beer-selection="vm.beerSelection" on-cancel="vm.closeBeerSearchForm()" header-text="What would you like to drink?"></beer-search>
+
+ <table class="table table-hover">
+    <tbody>
+      <tr ng-repeat="item in vm.user.buzzes" class="hover" style="cursor: pointer;">
+        <td style="width:64px;">
+          <img ng-src="{{item.icon}}" ng-show="item.icon" />
+        </td>
+        <td>
+          {{item.name}} <br/>
+          <span class="text-muted">{{item.brewery}}</span>
+        </td>
+        <td valign="middle">
+          <button type="button" class="close pull-right" ng-click="vm.removeBuzz($index)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
