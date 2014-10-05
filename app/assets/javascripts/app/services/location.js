@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.services').factory('Location', ['$q', 'Storage', Location]);
+  angular.module('Buzzed.services').factory('Location', Location);
 
   function Location($q, Storage) {
     var service = {
@@ -60,4 +60,6 @@
       return deferred.promise;
     }
   }
+
+  Location.$inject = ['$q', 'Storage'];
 }());

@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.services').factory('User', ['$q', 'BuzzedFirebase', 'Location', 'Storage', User]);
+  angular.module('Buzzed.services').factory('User', User);
 
   function User($q, BuzzedFirebase, Location, Storage) {
     var service = {
@@ -85,4 +85,6 @@
     this.buzzes = [];
     this.fizzes = [];
   }
+
+  User.$inject = ['$q', 'BuzzedFirebase', 'Location', 'Storage'];
 }());

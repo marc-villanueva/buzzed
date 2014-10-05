@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.controllers').controller('HeaderCtrl', ['$location', HeaderCtrl]);
+  angular.module('Buzzed.controllers').controller('HeaderCtrl', HeaderCtrl);
 
   function HeaderCtrl($location) {
     var vm = this;
@@ -13,4 +13,6 @@
       $location.path(url);
     }
   }
+
+  HeaderCtrl.$inject = ['$location'];
 }());

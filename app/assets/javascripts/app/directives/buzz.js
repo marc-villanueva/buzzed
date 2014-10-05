@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.directives').directive('buzz', ['FizzBuzz', 'User', Buzz]);
+  angular.module('Buzzed.directives').directive('buzz', Buzz);
 
   function Buzz(FizzBuzz, User) {
     return {
@@ -87,4 +87,6 @@
       }
     }
   }
+
+  Buzz.$inject = ['FizzBuzz', 'User'];
 }());

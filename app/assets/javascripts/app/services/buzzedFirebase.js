@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.services').factory('BuzzedFirebase', ['firebaseUrl', '$firebase', BuzzedFirebase])
+  angular.module('Buzzed.services').factory('BuzzedFirebase', BuzzedFirebase)
 
   function BuzzedFirebase(firebaseUrl, $firebase) {
     var ref = new Firebase(firebaseUrl);
@@ -15,4 +15,6 @@
 
     return service;
   }
+
+  BuzzedFirebase.$inject = ['firebaseUrl', '$firebase'];
 }());

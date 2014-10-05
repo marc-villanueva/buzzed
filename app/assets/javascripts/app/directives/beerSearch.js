@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.directives').directive('beerSearch', ['BrewerySearch', BeerSearch]);
+  angular.module('Buzzed.directives').directive('beerSearch', BeerSearch);
 
   function BeerSearch(BrewerySearch) {
 
@@ -47,4 +47,6 @@
       }
     }
   }
+
+  BeerSearch.$inject = ['BrewerySearch'];
 }());

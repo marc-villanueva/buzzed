@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.controllers').controller('FizzCtrl', ['$scope', 'User', 'user', FizzCtrl]);
+  angular.module('Buzzed.controllers').controller('FizzCtrl', FizzCtrl);
 
   function FizzCtrl($scope, User, user) {
     var vm = this;
@@ -22,4 +22,6 @@
     });
 
   }
+
+  FizzCtrl.$inject = ['$scope', 'User', 'user'];
 }());

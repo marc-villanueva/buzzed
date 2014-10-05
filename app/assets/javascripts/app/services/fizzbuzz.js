@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.services').factory('FizzBuzz', ['BuzzedFirebase', FizzBuzz]);
+  angular.module('Buzzed.services').factory('FizzBuzz', FizzBuzz);
 
   function FizzBuzz(BuzzedFirebase) {
     var service = {
@@ -21,4 +21,6 @@
       BuzzedFirebase.buzzesRef.push(buzz);
     }
   }
+
+  FizzBuzz.$inject = ['BuzzedFirebase'];
 }());

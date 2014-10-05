@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.services').factory('Storage', ['localStorageService', Storage]);
+  angular.module('Buzzed.services').factory('Storage', Storage);
 
   function Storage(localStorageService) {
     var service = {
@@ -31,4 +31,6 @@
       localStorageService.clearAll();
     }
   }
+
+  Storage.$inject = ['localStorageService'];
 }());

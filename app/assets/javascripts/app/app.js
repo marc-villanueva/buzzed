@@ -10,35 +10,32 @@
 
   buzzed.value('firebaseUrl', 'https://radiant-torch-198.firebaseio.com/');
 
-  buzzed.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+  buzzed.constant('UserService',{
+      user : ['User',function(User){
+        return User.geolocateUser(false)
+      }]
+  });
+
+  buzzed.config(['$routeProvider', '$locationProvider', '$injector', function($routeProvider, $locationProvider, $injector) {
     $routeProvider.
       when("/",
         {
           templateUrl: "app/views/home.html",
           controller: "HomeCtrl as vm",
-          resolve: {
-            user: function(User) {
-              return User.geolocateUser(false)
-            }
-          }}).
+          resolve: $injector.get('UserService')
+        }).
       when("/buzz",
         {
           templateUrl: "app/views/buzz.html",
           controller: "BuzzCtrl as vm",
-          resolve: {
-              user: function(User) {
-                return User.geolocateUser(false)
-              }
-          }}).
+          resolve: $injector.get('UserService')
+        }).
       when("/fizz",
         {
           templateUrl: "app/views/fizz.html",
           controller: "FizzCtrl as vm",
-          resolve: {
-            user: function(User) {
-              return User.geolocateUser(false)
-            }
-          }});
+          resolve: $injector.get('UserService')
+        });
 
     $locationProvider.html5Mode(true);
   }]);

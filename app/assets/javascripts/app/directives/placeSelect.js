@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.directives').directive('placeSelect', ['Location', PlaceSelect]);
+  angular.module('Buzzed.directives').directive('placeSelect', PlaceSelect);
 
   function PlaceSelect(Location) {
     return {
@@ -54,4 +54,6 @@
       }
     }
   }
+
+  PlaceSelect.$inject = ['Location'];
 }());

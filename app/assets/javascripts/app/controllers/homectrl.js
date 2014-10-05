@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.controllers').controller('HomeCtrl', ['$scope', '$location', 'User', 'BuzzedFirebase', 'user', HomeCtrl]);
+  angular.module('Buzzed.controllers').controller('HomeCtrl', HomeCtrl);
 
   function HomeCtrl($scope, $location, User, BuzzedFirebase, user) {
     var vm = this;
@@ -25,4 +25,6 @@
       $location.path(url);
     }
   }
+
+  HomeCtrl.$inject = ['$scope', '$location', 'User', 'BuzzedFirebase', 'user'];
 }());
