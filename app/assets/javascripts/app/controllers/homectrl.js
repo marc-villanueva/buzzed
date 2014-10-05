@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.controllers').controller('HomeCtrl', HomeCtrl);
+  angular.module('Buzzed.controllers').controller('HomeCtrl', ['$scope', '$location', 'User', 'BuzzedFirebase', 'user', HomeCtrl]);
 
   function HomeCtrl($scope, $location, User, BuzzedFirebase, user) {
     var vm = this;

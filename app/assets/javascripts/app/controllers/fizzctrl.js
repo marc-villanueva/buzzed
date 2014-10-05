@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.controllers').controller('FizzCtrl', FizzCtrl);
+  angular.module('Buzzed.controllers').controller('FizzCtrl', ['$scope', 'User', 'user', FizzCtrl]);
 
   function FizzCtrl($scope, User, user) {
     var vm = this;
