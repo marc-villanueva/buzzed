@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.services').factory('Storage', Storage);
+  angular.module('Buzzed.services').factory('Storage', ['localStorageService', Storage]);
 
   function Storage(localStorageService) {
     var service = {

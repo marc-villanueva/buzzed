@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('Buzzed.services').factory('Location', Location);
+  angular.module('Buzzed.services').factory('Location', ['$q', 'Storage', Location]);
 
   function Location($q, Storage) {
     var service = {
