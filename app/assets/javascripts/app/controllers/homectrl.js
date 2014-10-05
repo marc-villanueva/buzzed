@@ -3,7 +3,7 @@
 
   angular.module('Buzzed.controllers').controller('HomeCtrl', HomeCtrl);
 
-  function HomeCtrl($scope, $location, User, BuzzedFirebase, user) {
+  function HomeCtrl($scope, $location, $timeout, User, BuzzedFirebase, user) {
     var vm = this;
     vm.user = user;
     vm.fizzes = [];
@@ -15,7 +15,7 @@
 
     function initialize() {
       BuzzedFirebase.fizzesRef.limit(10).on('child_added', function(snapshot) {
-        $scope.$apply(function() {
+        $timeout(function() {
           vm.fizzes.unshift(snapshot.val());
         });
       });
@@ -26,5 +26,5 @@
     }
   }
 
-  HomeCtrl.$inject = ['$scope', '$location', 'User', 'BuzzedFirebase', 'user'];
+  HomeCtrl.$inject = ['$scope', '$location', '$timeout', 'User', 'BuzzedFirebase', 'user'];
 }());
