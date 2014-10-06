@@ -7,7 +7,8 @@
     var service = {
       getUser: getUser,
       geolocateUser: geolocateUser,
-      saveUser: saveUser
+      saveUser: saveUser,
+      checkFizzForUser: checkFizzForUser
     };
 
     return service;
@@ -48,6 +49,32 @@
       BuzzedUser.update(BuzzedFirebase, user);
       Storage.setValue('currentUser', user);
     }
+
+    function checkFizzForUser(fizz, user) {
+      angular.forEach(user.buzzes, function(buzz) {
+        if (buzz.breweryDbId == fizz.beer.breweryDbId) {
+          if (!fizzAlreadyExists(fizz, user)) {
+            user.fizzBuzz.push(fizz);
+            saveUser(user);
+          }
+        }
+      })
+    }
+
+    function fizzAlreadyExists(fizz, user) {
+      var exists = false;
+
+      angular.forEach(user.fizzBuzz, function(fizzBuzz) {
+        if (fizzBuzz.beer.breweryDbId == fizz.beer.breweryDbId &&
+            fizzBuzz.place.googlePlaceId == fizz.place.googlePlaceId &&
+            fizzBuzz.createdAt == fizz.createdAt) {
+            exists = true;
+            return;
+        }
+      });
+
+      return exists;
+    }
   }
 
   BuzzedUser.create = function(BuzzedFirebase) {
@@ -61,19 +88,11 @@
 
   BuzzedUser.update = function(BuzzedFirebase, user) {
     var clone = angular.extend({}, user);
-    var buzzes = angular.copy(clone.buzzes);
-    var fizzes = angular.copy(clone.fizzes);
-    delete clone.buzzes;
-    delete clone.fizzes;
+    clone.buzzes = angular.copy(clone.buzzes);
+    clone.fizzes = angular.copy(clone.fizzes);
+    clone.fizzBuzz = angular.copy(clone.fizzBuzz);
 
     BuzzedFirebase.usersRef.child(user.id).set(clone);
-    if (buzzes) {
-      BuzzedFirebase.usersRef.child(user.id).child('buzzes').set(buzzes);
-    }
-
-    if (fizzes) {
-      BuzzedFirebase.usersRef.child(user.id).child('fizzes').set(fizzes);
-    }
   }
 
   function BuzzedUser() {
@@ -84,6 +103,7 @@
     };
     this.buzzes = [];
     this.fizzes = [];
+    this.fizzBuzz = [];
   }
 
   User.$inject = ['$q', 'BuzzedFirebase', 'Location', 'Storage'];

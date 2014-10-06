@@ -16,7 +16,7 @@
 
   <beer-search ng-show="vm.beerSearchToggle" beer-selection="vm.beerSelection" on-cancel="vm.closeBeerSearchForm()" header-text="What would you like to drink?"></beer-search>
 
- <table class="table table-hover">
+  <table class="table table-hover" ng-show="vm.mainToggle">
     <tbody>
       <tr ng-repeat="item in vm.user.buzzes" class="hover" style="cursor: pointer;">
         <td style="width:64px;">

@@ -1,23 +1,63 @@
-<div>
-  <button class="btn btn-primary btn-block btn-large" ng-click="vm.goTo('/fizz')" type="button">FIZZ</button>
-  <button class="btn btn-primary btn-block" ng-click="vm.goTo('/buzz')" type="button">BUZZ</button>
-</div>
+<tabset style="width:100%; padding: 0 0">
+  <tab heading="Fizzes">
+    <table class="table table-hover">
+      <tbody>
+        <tr ng-repeat="item in vm.fizzes" class="hover">
+          <td style="width:64px; {{$index == 0 ? 'border-top: inherit;' : ''}}">
+            <img ng-src="{{item.beer.icon}}" ng-show="item.beer.icon" />
+          </td>
+          <td style="{{$index == 0 ? 'border-top: inherit;' : ''}}">
+            <p style="margin-bottom: 5px;">{{item.beer.name}}</p>
+            <p>{{item.place.name}}<br/>
+            <span class="text-muted"><small>{{item.place.vicinity}}</small></span>
+            </p>
+          </td>
+          <td valign="middle" style="{{$index == 0 ? 'border-top: inherit;' : ''}}">
+            <span class="text-muted"><small><span am-time-ago="item.createdAt"></span></small></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </tab>
 
-<div>
-  <table class="table table-hover">
-    <tbody>
-      <tr ng-repeat="item in vm.fizzes" class="hover" style="cursor: pointer;">
-        <td style="width:64px;">
-          <img ng-src="{{item.beer.icon}}" ng-show="item.beer.icon" />
-        </td>
-        <td>
-          {{item.beer.name}} @ {{item.place.name}}<br/>
-          <span class="text-muted">{{item.place.vicinity}}</span>
-        </td>
-        <td valign="middle">
-          <span class="text-muted"><small>{{ item.createdAt | date : 'short' }}</small></span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <tab heading="Buzzes">
+    <table class="table table-hover">
+      <tbody>
+        <tr ng-repeat="item in vm.buzzes" class="hover">
+          <td style="width:64px; {{$index == 0 ? 'border-top: inherit;' : ''}}">
+            <img ng-src="{{item.icon}}" ng-show="item.icon" />
+          </td>
+          <td style="{{$index == 0 ? 'border-top: inherit;' : ''}}">
+            {{item.name}} <br/>
+            <span class="text-muted">{{item.brewery}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </tab>
+
+  <tab ng-show="vm.user.fizzBuzz.length">
+    <tab-heading>
+      <i class="glyphicon glyphicon-bell"></i> FizzBuzz
+    </tab-heading>
+
+    <table class="table table-hover">
+      <tbody>
+        <tr ng-repeat="item in vm.user.fizzBuzz" class="hover">
+          <td style="width:64px; {{$index == 0 ? 'border-top: inherit;' : ''}}">
+            <img ng-src="{{item.beer.icon}}" ng-show="item.beer.icon" />
+          </td>
+          <td style="{{$index == 0 ? 'border-top: inherit;' : ''}}">
+            <p style="margin-bottom: 5px;">{{item.beer.name}}</p>
+            <p>{{item.place.name}}<br/>
+            <span class="text-muted"><small>{{item.place.vicinity}}</small></span>
+            </p>
+          </td>
+          <td valign="middle" style="{{$index == 0 ? 'border-top: inherit;' : ''}}">
+            <span class="text-muted"><small><span am-time-ago="item.createdAt"></span></small></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </tab>
+</tabset>

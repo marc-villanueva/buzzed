@@ -7,8 +7,7 @@
     var vm = this;
     vm.user = user;
     vm.fizzes = [];
-    vm.goTo = goTo;
-
+    vm.buzzes = [];
 
     initialize();
     //////////////////
@@ -16,13 +15,22 @@
     function initialize() {
       BuzzedFirebase.fizzesRef.limit(10).on('child_added', function(snapshot) {
         $timeout(function() {
-          vm.fizzes.unshift(snapshot.val());
+          var fizz = snapshot.val();
+          if (fizz.userId != vm.user.id) {
+            vm.fizzes.unshift(fizz);
+            User.checkFizzForUser(fizz, vm.user);
+          }
         });
       });
-    }
 
-    function goTo(url) {
-      $location.path(url);
+      BuzzedFirebase.buzzesRef.limit(10).on('child_added', function(snapshot) {
+        $timeout(function() {
+          var buzz = snapshot.val();
+          if (buzz.userId != vm.user.id)  {
+            vm.buzzes.unshift(buzz);
+          }
+        });
+      });
     }
   }
 

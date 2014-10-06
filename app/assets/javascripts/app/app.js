@@ -6,7 +6,7 @@
   angular.module('Buzzed.controllers', ['Buzzed.services', 'Buzzed.directives']);
 
 
-  var buzzed = angular.module('Buzzed', ['ngRoute', 'ui.bootstrap', 'templates', 'firebase',  'Buzzed.controllers']);
+  var buzzed = angular.module('Buzzed', ['ngRoute', 'ui.bootstrap', 'templates', 'firebase', 'angularMoment', 'Buzzed.controllers']);
 
   buzzed.value('firebaseUrl', 'https://radiant-torch-198.firebaseio.com/');
 

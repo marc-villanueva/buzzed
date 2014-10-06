@@ -12,11 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require moment
 //= require bootstrap
 //= require angular
 //= require angular-route
 //= require angular-resource
 //= require angular-local-storage
+//= require angular-moment.min
 //= require firebase-1.0.15
 //= require angularfire.min
 
